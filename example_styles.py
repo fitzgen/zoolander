@@ -40,4 +40,3 @@ with sheet.definitions as rule:
 
 if __name__ == "__main__":
     print sheet.render()
-    sheet.render_to_file(__file__.replace(".py", ".css"))
