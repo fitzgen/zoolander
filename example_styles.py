@@ -3,6 +3,9 @@ from zoolander import *
 sheet = Stylesheet()
 
 with sheet.definitions as rule:
+
+    # Zoolander's semantics map directly to CSS, nothing new here.
+
     rule("body",
          font_face="Helvetica, sans-serif",
          line_height=2)
