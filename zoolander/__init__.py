@@ -7,6 +7,7 @@ left = "left"
 class _Definitions(object):
     def __init__(self):
         self.rules = {}
+        self.selector_order = []
 
     def __enter__(self):
         def rule(selector, **properties):
@@ -20,6 +21,7 @@ class _Definitions(object):
                 self.rules[selector].update(properties)
             else:
                 self.rules[selector] = properties
+                self.selector_order.append(selector)
         return rule
 
     def __exit__(*args):
@@ -34,11 +36,15 @@ class Stylesheet(object):
         Render this Stylesheet object to a string of CSS.
         """
         css_accumulator = []
-        for selector, properties in self.definitions.rules.items():
+
+        for selector in self.definitions.selector_order:
+            properties = self.definitions.rules[selector]
+
             rendered_properties = "\n".join(
                 ["    %s: %s;" % (key.replace("_", "-"), val)
                  for key, val in properties.items()]
             )
+
             css_accumulator.append("""\
 %s {
 %s
