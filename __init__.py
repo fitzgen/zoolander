@@ -49,20 +49,3 @@ class Stylesheet(object):
         """
         open(filename, "w").write(self.render())
         return self
-
-def _test():
-    sheet = Stylesheet()
-
-    with sheet.definitions as rule:
-        rule("div.some-class",
-             background_color="#ff00ff",
-             margin="1em 2em 1em 2em",
-             float=right)
-        rule("#search-box",
-             width="10em",
-             border="1px solid #000")
-
-    print sheet.render()
-
-if __name__ == "__main__":
-    _test()
