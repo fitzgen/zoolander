@@ -13,6 +13,9 @@ class _Definitions(object):
             """
             Define a CSS rule for "selector" by passing keyword arguments.
             """
+            if isinstance(selector, list) or isinstance(selector, tuple):
+                selector = ",\n".join(selector)
+
             if selector in self.rules:
                 self.rules[selector].update(properties)
             else:
