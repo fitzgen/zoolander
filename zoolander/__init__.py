@@ -1,6 +1,14 @@
 """
 Zoolander - A Python DSL for generating Cascading Style Sheets.
 """
+import traceback as tb
+
+_CSS_TEMPLATE = """\
+%s
+%s {
+%s
+}"""
+
 right = "right"
 left = "left"
 
@@ -22,6 +30,14 @@ class _Definitions(object):
             else:
                 self.rules[selector] = properties
                 self.selector_order.append(selector)
+
+                # XXX: Add definition line comment. Slightly hacky.
+                stack = tb.extract_stack()
+                self.rules[selector]["__COMMENT__"] = "/* Defined in %s, line %s */" % (
+                    stack[0][0],
+                    stack[0][1]
+                )
+
         return rule
 
     def __exit__(*args):
@@ -39,16 +55,16 @@ class Stylesheet(object):
 
         for selector in self.definitions.selector_order:
             properties = self.definitions.rules[selector]
+            comment = properties.pop("__COMMENT__")
 
             rendered_properties = "\n".join(
                 ["    %s: %s;" % (key.replace("_", "-"), val)
                  for key, val in properties.items()]
             )
 
-            css_accumulator.append("""\
-%s {
-%s
-}""" % (selector, rendered_properties))
+            css_accumulator.append(_CSS_TEMPLATE % (
+                comment, selector, rendered_properties
+            ))
 
         return "\n\n".join(css_accumulator)
 
