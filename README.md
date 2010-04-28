@@ -1,6 +1,17 @@
+Zoolander
+=========
+
 Generate Cascading Style Sheets with pure Python.
 
-Open example_styles.py in your favorite text editor, and then make sure
-Zoolander's directory is on your $PYTHONPATH, and run
+Installation
+------------
+
+    $ git clone git://github.com/fitzgen/zoolander.git
+    $ cd zoolander/
+    $ sudo python setup.py install
+
+Then open the example_styles.py file in your favorite editor, run
 
     $ python example_styles.py
+
+and inspect the output.
