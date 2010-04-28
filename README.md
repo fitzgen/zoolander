@@ -16,6 +16,11 @@ Then open the example_styles.py file in your favorite editor, run
 
 and inspect the output.
 
+Documentation
+-------------
+
+[http://fitzgen.github.com/zoolander/](http://fitzgen.github.com/zoolander/)
+
 Copying
 -------
 
