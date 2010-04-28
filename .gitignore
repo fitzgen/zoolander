@@ -1,0 +1,6 @@
+*pyc
+.ropeproject/*
+zoolander/.ropeproject/*
+build/*
+dist/*
+zoolander.egg-info/*
