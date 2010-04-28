@@ -104,25 +104,25 @@ sheet = Stylesheet()
 with sheet.definitions as rule:
 
     rule("h1",
-         height="118px",
-         margin_top="1em")
+         height=px(118px),
+         margin_top=em(1))
 
     rule(".tagline",
-         font_size="26px",
+         font_size=px(26),
          text_align=right)</pre>
 
       <h2>Variables</h2>
 
       <pre class="sh_python">    blue = "#3BBFCE"
-    margin = "16px"
+    margin = px(16)
 
     rule(".content_navigation",
          border_color=blue,
-         margin=margin,
+         margin=margin/2,
          color=blue.replace("CE", "EF"))
 
     rule(".border",
-         margin=margin,
+         margin=margin+3,
          border_color=blue)</pre>
 
       <h2>Mixins</h2>
@@ -130,18 +130,18 @@ with sheet.definitions as rule:
       <pre class="sh_python">
     table_scaffolding = dict(text_align=center,
                              font_weight=bold,
-                             padding="2px")
+                             padding=px(2))
 
     rule("#blind-me-with-science",
          color="#CCCCEE",
          **table_scaffolding)
 
-    def left(distance, **props):
+    def float_left(distance, **props):
         return dict(float=left,
                     margin_left=distance,
                     **props)
 
-    left_table = left("10px", **table_scaffolding)
+    left_table = float_left(px(10), **table_scaffolding)
 
     rule("#other-data",
          **left_table)</pre>
