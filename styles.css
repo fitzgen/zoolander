@@ -63,3 +63,12 @@ hr {
 pre, code {
     font-size:1.15em;
 }
+
+pre#bluesteel {
+    font-size: 8pt;
+    font-weight: bold;
+    letter-spacing: 4px;
+    line-height: 8pt;
+    background-color: #B6FEF3;
+    color: #000000;
+}
