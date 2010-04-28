@@ -79,6 +79,26 @@ class pt(_Unit):
     """The pt unit."""
     _UNIT = "pt"
 
+class pc(_Unit):
+    """The pc unit."""
+    _UNIT = "pc"
+
+class in_(_Unit):
+    """The inches unit."""
+    _UNIT = "in"
+
+class cm(_Unit):
+    """The cm unit."""
+    _UNIT = "cm"
+
+class mm(_Unit):
+    """The mm unit."""
+    _UNIT = "mm"
+
+class ex(_Unit):
+    """The ex unit."""
+    _UNIT = "ex"
+
 class _Definitions(object):
     def __init__(self):
         self.rules = {}
