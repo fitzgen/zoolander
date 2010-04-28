@@ -113,38 +113,38 @@ with sheet.definitions as rule:
 
       <h2>Variables</h2>
 
-      <pre class="sh_python">    BLUE = "#3BBFCE"
-    MARGIN = "16px"
+      <pre class="sh_python">    blue = "#3BBFCE"
+    margin = "16px"
 
     rule(".content_navigation",
-         border_color=BLUE,
-         margin=MARGIN,
-         color=BLUE.replace("CE", "EF"))
+         border_color=blue,
+         margin=margin,
+         color=blue.replace("CE", "EF"))
 
     rule(".border",
-         margin=MARGIN,
-         border_color=BLUE)</pre>
+         margin=margin,
+         border_color=blue)</pre>
 
       <h2>Mixins</h2>
 
       <pre class="sh_python">
-    TABLE_SCAFFOLDING = dict(text_align=center,
+    table_scaffolding = dict(text_align=center,
                              font_weight=bold,
                              padding="2px")
 
     rule("#blind-me-with-science",
          color="#CCCCEE",
-         **TABLE_SCAFFOLDING)
+         **table_scaffolding)
 
-    def LEFT(distance, **props):
+    def left(distance, **props):
         return dict(float=left,
                     margin_left=distance,
                     **props)
 
-    LEFT_TABLE = LEFT("10px", **TABLE_SCAFFOLDING)
+    left_table = left("10px", **table_scaffolding)
 
     rule("#other-data",
-         **LEFT_TABLE)</pre>
+         **left_table)</pre>
 
       <h2>Render</h2>
 
