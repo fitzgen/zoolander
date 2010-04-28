@@ -9,8 +9,14 @@ _CSS_TEMPLATE = """\
 %s
 }"""
 
+# Provide shorthand for commonly used words.
 right = "right"
 left = "left"
+bold = "bold"
+italic = "italic"
+none = "none"
+block = "block"
+inline = "inline"
 
 class _Definitions(object):
     def __init__(self):
