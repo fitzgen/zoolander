@@ -7,6 +7,7 @@
     <title>Zoolander</title>
 
     <link rel="stylesheet" href="styles.css" type="text/css" />
+    <link rel="stylesheet" href="sh_darkness.min.css" type="text/css" />
 
   </head>
 
@@ -92,6 +93,82 @@ WWW#########W#KLEjGLKWWWWWWWWWWWWWWWWWWWWWWWWWWWWW
 WWWW##########DLffGD#WWWWWWWWWWWWWWWWWWWWWWWWWWWWW
 WWWW######WW##jtfGK#WWWWWWWWWWWK##WWWWWWWWWWWWWWWW</code></pre>
 
+      <h2>Clean</h2>
+
+      <p>Nothing but pure python with a light syntax.</p>
+
+      <pre class="sh_python">from zoolander import *
+
+sheet = Stylesheet()
+
+with sheet.definitions as rule:
+
+    rule("h1",
+         height="118px",
+         margin_top="1em")
+
+    rule(".tagline",
+         font_size="26px",
+         text_align=right)</pre>
+
+      <h2>Variables</h2>
+
+      <pre class="sh_python">    BLUE = "#3BBFCE"
+    MARGIN = "16px"
+
+    rule(".content_navigation",
+         border_color=BLUE,
+         margin=MARGIN,
+         color=BLUE.replace("CE", "EF"))
+
+    rule(".border",
+         margin=MARGIN,
+         border_color=BLUE)</pre>
+
+      <h2>Mixins</h2>
+
+      <pre class="sh_python">
+    TABLE_SCAFFOLDING = dict(text_align=center,
+                             font_weight=bold,
+                             padding="2px")
+
+    rule("#blind-me-with-science",
+         color="#CCCCEE",
+         **TABLE_SCAFFOLDING)
+
+    def LEFT(distance, **props):
+        return dict(float=left,
+                    margin_left=distance,
+                    **props)
+
+    LEFT_TABLE = LEFT("10px", **TABLE_SCAFFOLDING)
+
+    rule("#other-data",
+         **LEFT_TABLE)</pre>
+
+      <h2>Render</h2>
+
+      <pre class="sh_python"># Returns the CSS, rendered as a string.
+sheet.render()
+
+# Render the CSS to a file
+sheet.render_to_file("example.css")</pre>
+
+      <h2>Little Extras</h2>
+
+      <p>As you may have noticed in the code examples above, Zoolander comes
+      with a few batteries included, short-hand variables. These are provided
+      just so that the number of quotes you need to type are minimized. As of
+      right now, these are the ones that are included:</p>
+
+      <pre class="sh_python">right = "right"
+left = "left"
+bold = "bold"
+italic = "italic"
+none = "none"
+block = "block"
+inline = "inline"</pre>
+
       <h2>Install</h2>
 
       <pre><code>$ git clone git://github.com/fitzgen/zoolander.git
@@ -104,6 +181,37 @@ $ sudo python setup.py install</code></pre>
 
       <p>and inspect the output.</p>
 
+      <h2>MIT Licensed</h2>
+
+      <p>See the LICENSE file for more details.</p>
+
+      <h2>Thanks</h2>
+
+      <p>Thanks to <a href="http://bitbucket.org/PeterRust/">Peter Rust</a> and
+      <a href="http://bitbucket.org/tavisrudd/">Tavis Rudd</a> for inspiration.</p>
+
+      <p>Thanks to <a href="http://sass-lang.com/">Sass</a>, for providing me
+      with a few code examples and ideas that I shamelessly ported to
+      Zoolander. Sass is cool.</p>
+
     </div>
+
+    <script type="text/javascript" src="sh_main.min.js"></script>
+    <script type="text/javascript" src="sh_python.min.js"></script>
+    <script type="text/javascript">
+      sh_highlightDocument();
+    </script>
+
+    <script type="text/javascript">
+      var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+      document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+    </script>
+    <script type="text/javascript">
+      try {
+      var pageTracker = _gat._getTracker("UA-16102550-1");
+      pageTracker._trackPageview();
+      } catch(err) {}
+    </script>
+
   </body>
 </html>
