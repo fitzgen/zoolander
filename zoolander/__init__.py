@@ -60,7 +60,7 @@ class Stylesheet(object):
                 Render a single key/val pair.
                 """
                 attr = attr.replace("_", "-")
-                return "    %s: %s" % (attr, val)
+                return "    %s: %s;" % (attr, val)
 
             rendered_properties = "\n".join(
                 [render_css_item(attr, val) for attr, val in properties.items()]
