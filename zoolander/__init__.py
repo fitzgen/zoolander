@@ -143,9 +143,15 @@ class Stylesheet(object):
             properties = self.definitions.rules[selector]
             comment = properties.pop("__COMMENT__")
 
+            def render_css_item(attr, val]):
+                """
+                Render a single key/val pair.
+                """
+                attr = attr.replace("_", "-")
+                return "    %s: %s" % (attr, val)
+
             rendered_properties = "\n".join(
-                ["    %s: %s;" % (key.replace("_", "-"), val)
-                 for key, val in properties.items()]
+                [render_css_item(attr, val) for attr, val in properties.items()]
             )
 
             css_accumulator.append(_CSS_TEMPLATE % (
