@@ -1,0 +1,10 @@
+"""
+Provide shorthand for commonly used words in CSS.
+"""
+right = "right"
+left = "left"
+bold = "bold"
+italic = "italic"
+none = "none"
+block = "block"
+inline = "inline"

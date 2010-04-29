@@ -3,21 +3,13 @@ Zoolander - A Python DSL for generating Cascading Style Sheets.
 """
 import traceback as tb
 from units import *
+from shorthand import *
 
 _CSS_TEMPLATE = """\
 %s
 %s {
 %s
 }"""
-
-# Provide shorthand for commonly used words.
-right = "right"
-left = "left"
-bold = "bold"
-italic = "italic"
-none = "none"
-block = "block"
-inline = "inline"
 
 class _Definitions(object):
     def __init__(self):
