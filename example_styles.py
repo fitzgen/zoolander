@@ -37,7 +37,7 @@ with sheet.definitions as rule:
          **toolbar_mixin)
 
     rule("#toolbar img",
-         border="1px solid #000000",
+         border=(px(1), "solid", "#000000"),
          **toolbar_mixin)
 
 
