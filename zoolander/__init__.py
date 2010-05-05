@@ -41,9 +41,26 @@ class _Definitions(object):
     def __exit__(*args):
         pass
 
+def is_iterable(obj):
+    try:
+        iter(obj)
+        return True
+    except TypeError:
+        return False
+
 class Stylesheet(object):
+
+    # The following atomic types can be rendered directly to a CSS value and
+    # don't need any manipulation.
+    _ATOMIC_CSS_VALUE_TYPES = (str, int, float, CssUnit)
+
     def __init__(self):
         self.definitions = _Definitions()
+
+    def _is_atomic_css_type(self, obj):
+        """Return bool based on if obj is an atomic css value."""
+        return any(isinstance(obj, type_)
+                   for type_ in self._ATOMIC_CSS_VALUE_TYPES)
 
     def render(self):
         """
@@ -59,8 +76,16 @@ class Stylesheet(object):
                 """
                 Render a single key/val pair.
                 """
-                attr = attr.replace("_", "-")
-                return "    %s: %s;" % (attr, val)
+                css_attr = attr.replace("_", "-")
+
+                if self._is_atomic_css_type(val):
+                    css_val = val
+                elif is_iterable(val):
+                    css_val = " ".join(map(str, val))
+                else:
+                    raise TypeError("Unsupported CSS value: %s" % val)
+
+                return "    %s: %s;" % (css_attr, css_val)
 
             rendered_properties = "\n".join(
                 [render_css_item(attr, val) for attr, val in properties.items()]
