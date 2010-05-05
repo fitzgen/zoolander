@@ -62,6 +62,21 @@ class Stylesheet(object):
         return any(isinstance(obj, type_)
                    for type_ in self._ATOMIC_CSS_VALUE_TYPES)
 
+    def _render_css_item(self, attr, val):
+        """
+        Render a single key/val pair.
+        """
+        css_attr = attr.replace("_", "-")
+
+        if self._is_atomic_css_type(val):
+            css_val = val
+        elif _is_iterable(val):
+            css_val = " ".join(map(str, val))
+        else:
+            raise TypeError("Unsupported CSS value: %s" % val)
+
+        return "    %s: %s;" % (css_attr, css_val)
+
     def render(self):
         """
         Render this Stylesheet object to a string of CSS.
@@ -72,23 +87,8 @@ class Stylesheet(object):
             properties = self.definitions.rules[selector]
             comment = properties.pop("__COMMENT__")
 
-            def render_css_item(attr, val):
-                """
-                Render a single key/val pair.
-                """
-                css_attr = attr.replace("_", "-")
-
-                if self._is_atomic_css_type(val):
-                    css_val = val
-                elif _is_iterable(val):
-                    css_val = " ".join(map(str, val))
-                else:
-                    raise TypeError("Unsupported CSS value: %s" % val)
-
-                return "    %s: %s;" % (css_attr, css_val)
-
             rendered_properties = "\n".join(
-                [render_css_item(attr, val) for attr, val in properties.items()]
+                [self._render_css_item(attr, val) for attr, val in properties.items()]
             )
 
             css_accumulator.append(_CSS_TEMPLATE % (
