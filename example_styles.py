@@ -17,7 +17,7 @@ with sheet.definitions as rule:
     # Since this is pure Python code, we can use all of Python's control
     # structures, simplest of which are variables and arithmetic operators.
 
-    side_panel_bg_color = "#AACCCC"
+    side_panel_bg_color = Hex("AACCCC")
     spacing = em(2)
 
     rule("#side-panel",
@@ -27,17 +27,17 @@ with sheet.definitions as rule:
 
     # Use dictionaries to mix in sets of properties to multiple rules.
 
-    toolbar_mixin = dict(background_color="#556677",
+    toolbar_mixin = dict(background_color=Hex("556677"),
                          float="left",
                          margin=em(1))
 
     rule("#toolbar li",
-         color="#005599",
+         color=Hex("005599"),
          font_style=italic,
          **toolbar_mixin)
 
     rule("#toolbar img",
-         border=(px(1), "solid", "#000000"),
+         border=(px(1), "solid", Hex("000000")),
          **toolbar_mixin)
 
 

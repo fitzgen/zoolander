@@ -2,6 +2,7 @@
 Zoolander's main stylesheet rendering logic.
 """
 import traceback as tb
+from colors import *
 from units import *
 from shorthand import *
 
@@ -52,7 +53,7 @@ class Stylesheet(object):
 
     # The following atomic types can be rendered directly to a CSS value and
     # don't need any manipulation.
-    _ATOMIC_CSS_VALUE_TYPES = (str, int, float, CssUnit)
+    _ATOMIC_CSS_VALUE_TYPES = (str, int, float, CssUnit, Hex)
 
     def __init__(self):
         self.definitions = _Definitions()
