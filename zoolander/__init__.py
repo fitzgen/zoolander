@@ -58,7 +58,7 @@ class Stylesheet(object):
         self.definitions = _Definitions()
 
     def _is_atomic_css_type(self, obj):
-        """Return bool based on if obj is an atomic css value."""
+        """Return bool based on if obj can be rendered to CSS as-is."""
         return any(isinstance(obj, type_)
                    for type_ in self._ATOMIC_CSS_VALUE_TYPES)
 
