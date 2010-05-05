@@ -41,7 +41,7 @@ class _Definitions(object):
     def __exit__(*args):
         pass
 
-def is_iterable(obj):
+def _is_iterable(obj):
     try:
         iter(obj)
         return True
@@ -80,7 +80,7 @@ class Stylesheet(object):
 
                 if self._is_atomic_css_type(val):
                     css_val = val
-                elif is_iterable(val):
+                elif _is_iterable(val):
                     css_val = " ".join(map(str, val))
                 else:
                     raise TypeError("Unsupported CSS value: %s" % val)
