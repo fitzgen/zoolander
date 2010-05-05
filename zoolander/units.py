@@ -3,11 +3,11 @@ This module has all of the css unit types.
 """
 import operator
 
-# Using a meta class for _Unit so that we don't have to define all the
+# Using a meta class for CssUnit so that we don't have to define all the
 # overloaded operators the exact same way, just with different operators. Using
 # the operator module and a little magic, we can do this all at once.
 
-class _UnitMetaClass(type):
+class CssUnitMetaClass(type):
     OPERATORS = ("add", "sub", "mul", "div")
 
     def __new__(mcs, name, bases, attrs):
@@ -16,7 +16,7 @@ class _UnitMetaClass(type):
         def overload(op):
             """
             Overload this operator with a function that will take other
-            instances of _Unit, integers, or floats.
+            instances of CssUnit, integers, or floats.
             """
             def overloaded_fn(self, other):
                 my_class = type(self)
@@ -37,13 +37,13 @@ class _UnitMetaClass(type):
 
         return cls
 
-class _Unit(object):
+class CssUnit(object):
     """
     Base class for all measurement units, such as em, px, and pt.
 
     Handles arithmetic for units.
     """
-    __metaclass__ = _UnitMetaClass
+    __metaclass__ = CssUnitMetaClass
 
     _UNIT = "meta unit"
 
@@ -52,34 +52,34 @@ class _Unit(object):
     def __str__(self):
         return "%s%s" % (self.num, self._UNIT)
 
-class em(_Unit):
+class em(CssUnit):
     """The em unit."""
     _UNIT = "em"
 
-class px(_Unit):
+class px(CssUnit):
     """The px unit."""
     _UNIT = "px"
 
-class pt(_Unit):
+class pt(CssUnit):
     """The pt unit."""
     _UNIT = "pt"
 
-class pc(_Unit):
+class pc(CssUnit):
     """The pc unit."""
     _UNIT = "pc"
 
-class in_(_Unit):
+class in_(CssUnit):
     """The inches unit."""
     _UNIT = "in"
 
-class cm(_Unit):
+class cm(CssUnit):
     """The cm unit."""
     _UNIT = "cm"
 
-class mm(_Unit):
+class mm(CssUnit):
     """The mm unit."""
     _UNIT = "mm"
 
-class ex(_Unit):
+class ex(CssUnit):
     """The ex unit."""
     _UNIT = "ex"
